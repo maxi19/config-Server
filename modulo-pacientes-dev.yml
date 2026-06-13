@@ -29,7 +29,8 @@ spring:
       endpoints:
         web:
           exposure:
-           include: "*"
+            include: "*"
+
 eureka:
   instance:
     prefer-ip-address: true
