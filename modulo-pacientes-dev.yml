@@ -8,23 +8,28 @@ spring:
     console:
       enabled: true
 
-    datasource:
-      url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
-      driverClassName: org.h2.Driver
-      username: sa
-      password: password
-    jpa:
-      database-platform: org.hibernate.dialect.H2Dialect
-      show-sql: 'true'
-      hibernate:
-        ddl-auto: update
-    devtools:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+  devtools:
       restart:
         enabled: 'false'
-    boot:
-      admin:
-         client:
-           url: http://localhost:8084
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+  management:
+      endpoints:
+        web:
+          exposure:
+           include: "*"
 eureka:
   instance:
     prefer-ip-address: true
@@ -32,12 +37,9 @@ eureka:
   client:
     service-url:
         defaultZone: http://localhost:8761/eureka/
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,beans,loggers
+    enabled: true
+
 server:
   forward-headers-strategy: framework
-  port: 8082
+  port: "8082"
  

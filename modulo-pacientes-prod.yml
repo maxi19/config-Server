@@ -17,6 +17,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
+  devtools:
+    restart:
+      enabled: 'false'
+  boot:
+    admin:
+      client:
+        url: http://admin-service:8084
 
 eureka:
   instance:
