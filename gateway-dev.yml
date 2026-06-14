@@ -59,4 +59,4 @@ springdoc:
      - name: modulo-atenciones
        url: /api/atenciones/v3/api-docs
 server:
-  port: 8080
+  port: "8080"

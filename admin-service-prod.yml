@@ -20,4 +20,4 @@ eureka:
       defaultZone: http://eurekaserver:8761/eureka/
 server:
   forward-headers-strategy: framework
-  port: 8084
+  port: "8084"
