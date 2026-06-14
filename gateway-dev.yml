@@ -58,3 +58,5 @@ springdoc:
        url: /api/pacientes/v3/api-docs
      - name: modulo-atenciones
        url: /api/atenciones/v3/api-docs
+server:
+  port: 8080
