@@ -2,8 +2,8 @@ spring:
   application:
     name: adminservice
   cloud:
-      config:
-        profile: prod
+    config:
+      profile: prod
 eureka:
   instance:
     # Fuerza a que se registren por IP, que es lo más estable en redes de Docker
