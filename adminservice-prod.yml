@@ -1,10 +1,6 @@
 spring:
   application:
-    name: admin-service
-  boot:
-    admin:
-      discovery:
-        ignored-services: "admin-service"
+    name: adminservice
   cloud:
       config:
         profile: prod
