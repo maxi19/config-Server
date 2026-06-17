@@ -3,7 +3,8 @@ spring:
     name: modulo-pacientes
   cloud:
     config:
-     profile: prod
+      profile: prod
+      uri: http://configUserProd:configPasswordProd123@configserver:8888
   h2:
     console:
       enabled: true
@@ -24,6 +25,8 @@ spring:
     admin:
       client:
         url: http://admin-service:8084
+        name: adminProd
+        password: adminProdPassword123
 
 eureka:
   instance:
@@ -31,7 +34,7 @@ eureka:
     instance-id: ${spring.application.name}:${random.uuid}
   client:
     service-url:
-        defaultZone: http://eurekaserver:8761/eureka/
+        defaultZone: http://eurekaProdUser:eurekaProdPassword123@eurekaserver:8761/eureka/
 
 management:
   endpoints:

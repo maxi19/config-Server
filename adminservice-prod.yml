@@ -4,6 +4,10 @@ spring:
   cloud:
       config:
         profile: prod
+  security:
+    user:
+      name: adminProd
+      password: adminProdPassword123
 eureka:
   instance:
     # Fuerza a que se registren por IP, que es lo más estable en redes de Docker
@@ -13,7 +17,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eurekaserver:8761/eureka/
+      defaultZone: http://eurekaProdUser:eurekaProdPassword123@eurekaserver:8761/eureka/
 server:
   forward-headers-strategy: framework
   port: "8084"

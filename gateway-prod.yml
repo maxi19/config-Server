@@ -14,7 +14,7 @@ spring:
 # Borra "/api/pacientes" de la URL antes de enviar la petición al microservicio
           filters:
           - StripPrefix=2 
-
+          - TokenRelay=
         - id: modulo-atenciones
           uri: lb://MODULO-ATENCIONES
           predicates:
@@ -29,12 +29,14 @@ spring:
     admin:
       client:
         url: http://localhost:8084
+        username: adminProd
+        password: adminProdPassword123
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
   client:
     service-url:
-        defaultZone: http://eurekaserver:8761/eureka/
+        defaultZone: http://eurekaProdUser:eurekaProdPassword123@eurekaserver:8761/eureka/
 
 management:
   endpoints:
