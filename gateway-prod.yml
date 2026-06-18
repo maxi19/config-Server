@@ -1,11 +1,26 @@
 spring:
   application:
     name: gateway
+  security:
+      oauth2:
+        client:
+          registration:
+            keycloak-hospital:
+              client-id: hospital-gateway
+              client-secret: tu_secreto_de_keycloak # Generado en Keycloak
+              scope: openid, profile, email
+              authorization-grant-type: authorization_code
+              redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+          provider:
+            keycloak-hospital:
+              issuer-uri: http://keycloak:8080/realms/hospital-realm
+              authorization-uri: http://localhost:8180/realms/hospital-realm/protocol/openid-connect/auth
+
   cloud:
     gateway:
       discovery:
         locator:
-          enabled: 'true'
+          enabled: false
       routes:
         - id: modulo-pacientes
           uri: lb://MODULO-PACIENTES
@@ -14,7 +29,7 @@ spring:
 # Borra "/api/pacientes" de la URL antes de enviar la petición al microservicio
           filters:
           - StripPrefix=2 
-          - TokenRelay=
+          - TokenRelay
         - id: modulo-atenciones
           uri: lb://MODULO-ATENCIONES
           predicates:
@@ -22,18 +37,20 @@ spring:
 # Borra "/api/atenciones" de la URL antes de enviar la petición al microservicio
           filters:
           - StripPrefix=2
+          - TokenRelay
     loadbalancer:
       ribbon:
-        enabled: 'false'
+        enabled: false
   boot:
     admin:
       client:
-        url: http://localhost:8084
+        url: http://adminservice:8084
         username: adminProd
         password: adminProdPassword123
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
+    prefer-ip-address: true
   client:
     service-url:
         defaultZone: http://eurekaProdUser:eurekaProdPassword123@eurekaserver:8761/eureka/

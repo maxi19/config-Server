@@ -28,6 +28,12 @@ spring:
         url: http://localhost:8084
         username: adminUser
         password: adminPassword123
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          # URL ficticia obligatoria para evitar que falle la auto-configuración de Spring al iniciar
+          issuer-uri: http://localhost:9999/mock-realm
   management:
       endpoints:
         web:

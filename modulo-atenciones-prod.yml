@@ -16,13 +16,24 @@ spring:
   jpa:
       hibernate:
         ddl-auto: update
-      show-sql: 'true'
+      show-sql: true
+
   boot:
       admin:
         client:
           url: http://admin-service:8084
           name: adminProd
           password: adminProdPassword123
+
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          # Firma exacta esperada del emisor
+          issuer-uri: http://localhost:8180/realms/hospital-realm
+          # Descarga de llaves públicas mediante la red interna de Docker
+          jwk-set-uri: http://keycloak:8080/realms/hospital-realm/protocol/openid-connect/certs
+
 management:
   endpoints:
      web:
