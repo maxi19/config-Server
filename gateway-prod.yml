@@ -59,7 +59,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "health,info,gateway"
 
 springdoc:
   enable-native-support: true
